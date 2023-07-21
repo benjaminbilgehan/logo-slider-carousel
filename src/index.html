@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js"></script>
+
+</head>
+
+<body>
+    <div class="container logo-carousel">
+        <div class="row">
+            <div class="col">
+                <div class="carousel-customer-logos" :class="carouselClass">
+                    <div class="carousel-track" ref="track" :style="offsetCalc()">
+
+                        <div @click="clickLogo(index)" :key="index" v-for="(slide, index) in slides"
+                            :style="shouldAnim()"
+                            :class="{'active': index == activeSlide + slideOffset + 1, 'prev-style': index == activeSlide + slideOffset , 'next-style': index == activeSlide + slideOffset + 2, 'first-style': index == activeSlide + slideOffset - 1, 'last-style': index == activeSlide + slideOffset + 3}"
+                            class="carousel-customer-logos__logo">
+                            <img :style="{width: imgWidth}" :src="slide.logoUrl" alt="" draggable="false">
+                        </div>
+
+                    </div>
+                    <!--Duplicate-->
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="carousel-customer" :class="{'no-anim': noAnim}">
+                    <div tabindex="0" class="carousel-customer__nav-prev" @click="prev" @keyup.enter.prevent="prev">
+                        <span class="icon-material">chevron_left</span>
+                    </div>
+                    <div tabindex="0" class="carousel-customer__nav-next" @click="next" @keyup.enter.prevent="next">
+                        <span class="icon-material">chevron_right</span>
+                    </div>
+                    <div
+                        :style="{width: slides.length * 100 + '%', transform: 'translateX(' + (-100 / slides.length) * (activeSlide + slideOffset + 1) + '%)' }">
+                        <ul class="carousel-customer__carousel">
+                            <li :style="shouldAnim()" :class="{'active': index == activeSlide + slideOffset + 1}"
+                                v-for="(slide, index) in slides">
+                                <h2>
+                                    {{slide.titleText}}
+                                </h2>
+
+                                <a class="link-hasArrow-alt" :href="slide.linkUrl">{{slide.linkText}}
+                                    <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"
+                                        class="arrow" style="width: 16px; height: 16px;">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M10.293 3L15.0002 7.70711L10.293 12.4142L8.87883 11L11.1717 8.70711H1V6.70711H11.1717L8.87883 4.41421L10.293 3Z"
+                                            fill="currentColor"></path>
+                                    </svg>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container logo-carousel">
+        <div class="row">
+            <div class="col">
+                <div class="carousel-customer-logos" :class="carouselClass">
+                    <div class="carousel-track" ref="track" :style="offsetCalc()">
+
+                        <div @click="clickLogo(index)" :key="index" v-for="(slide, index) in slides"
+                            :style="shouldAnim()"
+                            :class="{'active': index == activeSlide + slideOffset + 1, 'prev-style': index == activeSlide + slideOffset , 'next-style': index == activeSlide + slideOffset + 2, 'first-style': index == activeSlide + slideOffset - 1, 'last-style': index == activeSlide + slideOffset + 3}"
+                            class="carousel-customer-logos__logo">
+                            <img :style="{width: imgWidth}" :src="slide.logoUrl" alt="" draggable="false">
+                        </div>
+
+                    </div>
+                    <!--Duplicate-->
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="carousel-customer" :class="{'no-anim': noAnim}">
+                    <div tabindex="0" class="carousel-customer__nav-prev" @click="prev" @keyup.enter.prevent="prev">
+                        <span class="icon-material">chevron_left</span>
+                    </div>
+                    <div tabindex="0" class="carousel-customer__nav-next" @click="next" @keyup.enter.prevent="next">
+                        <span class="icon-material">chevron_right</span>
+                    </div>
+                    <div
+                        :style="{width: slides.length * 100 + '%', transform: 'translateX(' + (-100 / slides.length) * (activeSlide + slideOffset + 1) + '%)' }">
+                        <ul class="carousel-customer__carousel">
+                            <li :style="shouldAnim()" :class="{'active': index == activeSlide + slideOffset + 1}"
+                                v-for="(slide, index) in slides">
+                                <h2>
+                                    {{slide.titleText}}
+                                </h2>
+
+                                <a class="link-hasArrow-alt" :href="slide.linkUrl">{{slide.linkText}}
+                                    <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"
+                                        class="arrow" style="width: 16px; height: 16px;">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M10.293 3L15.0002 7.70711L10.293 12.4142L8.87883 11L11.1717 8.70711H1V6.70711H11.1717L8.87883 4.41421L10.293 3Z"
+                                            fill="currentColor"></path>
+                                    </svg>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="logo.js"></script>
+</body>
+
+</html>
